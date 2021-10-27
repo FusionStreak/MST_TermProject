@@ -1,13 +1,22 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+/**
+ * Graph class
+ *
+ * @author Team MST
+ * @version 0.1
+ * @since 27/10/2021
+ */
 
 public class Graph {
-    private Map<City, List<City>> graph;
 
-    void addCity(String name, Boolean firewall, float x, float y) {
-        graph.putIfAbsent(new City(name, firewall, new City.Point(x, y)), new ArrayList<City>());
+    public void attack(Attack a) {
+
     }
 
-    
+    public void addCity(City c) {
+
+    }
+
+    public void addCity(String name, Boolean fire) {
+        addCity(new City(name, fire));
+    }
 }

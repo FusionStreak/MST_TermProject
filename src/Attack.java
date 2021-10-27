@@ -1,7 +1,16 @@
+/**
+ * Attack class
+ *
+ * @author Team MST
+ * @version 0.1
+ * @since 27/10/2021
+ */
+
 public class Attack {
     private Type type;
     private String dateTime;
     private String city;
+
     public Attack(Type type, String dateTime, String city) {
         this.type = type;
         this.dateTime = dateTime;
