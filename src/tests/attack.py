@@ -6,7 +6,7 @@ def minToTime(min: int):
     return hrs + ":" + min
 
 ATTACKS = ["NONE", "BLACK", "BLUE", "YELLOW", "RED"]
-DATE = "2021-10-01"
+DATES = ["2021-10-01", "2021-10-02", "2021-10-03", "2021-10-04", "2021-10-05"]
 CITIES = []
 TIME = 1440 
 
@@ -17,9 +17,10 @@ with open("cities.txt") as file:
 with open("attack.txt", 'w') as file:
     aChoice = ""
     cChoice = ""
-    for i in range(TIME):
-        aChoice = random.choice(ATTACKS)
-        cChoice = random.choice(CITIES)
-        if (aChoice != "NONE" and random.randint(0, 10) > 5):
-            file.write(cChoice + ", " + aChoice + ", " + DATE + ", " + minToTime(i) + "\n")
+    for DATE in DATES:
+        for i in range(TIME):
+            aChoice = random.choice(ATTACKS)
+            cChoice = random.choice(CITIES)
+            if (aChoice != "NONE" and random.randint(0, 10) > 5):
+                file.write(cChoice + ", " + aChoice + ", " + DATE + ", " + minToTime(i) + "\n")
         
