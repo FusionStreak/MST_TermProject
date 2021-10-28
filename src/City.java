@@ -12,7 +12,6 @@ public class City {
     private String name;
     private Boolean firewall;
     private ArrayList<Attack> attacks = new ArrayList<>();
-    private ArrayList<City> neighbours;
     private Point position = new Point(0, 0);
     private Status currStatus = Status.SAFE;
 
@@ -45,12 +44,8 @@ public class City {
         this.attacks = attacks;
     }
 
-    public ArrayList<City> getNeighbours() {
-        return neighbours;
-    }
-
-    public void setNeighbours(ArrayList<City> neighbours) {
-        this.neighbours = neighbours;
+    public void addAttack(Attack a) {
+        this.attacks.add(a);
     }
 
     public Point getPosition() {
@@ -69,6 +64,20 @@ public class City {
         this.currStatus = currStatus;
     }
 
+    public void alert(Attack.Type type) {
+        System.out.println(this.name + " has been attacked by " + type + " twice within 2 minutes!");
+    }
+
+    @Override
+    public String toString() {
+        return name +
+                ":\nfirewall= " + firewall +
+                "\nattacks= " + attacks.size() +
+                "\nposition= " + position +
+                "\ncurrStatus= " + currStatus;
+    }
+
+
     private enum Status {
         OFFLINE,
         SAFE,
@@ -82,6 +91,11 @@ public class City {
         public Point(float x, float y) {
             this.xPos = x;
             this.yPos = y;
+        }
+
+        @Override
+        public String toString() {
+            return "Point{" + xPos + ", " + yPos + '}';
         }
     }
 }

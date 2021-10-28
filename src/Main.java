@@ -11,10 +11,24 @@ public class Main {
         // write your code here
     }
 
+    /**
+     * Parses through txt file containing attacks
+     * Constructs the relevant Attack objects
+     * Calls the relevant functions on the graph
+     *
+     * @param filename path to file
+     */
     private void parseAttacks(String filename) {
 
     }
 
+    /**
+     * Parses through the txt file containing cities and routes
+     * Constructs the relevant City and Route objects
+     * Calls the relevant function on the graph
+     *
+     * @param filename path to file
+     */
     private void parseGraph(String filename) {
 
     }
