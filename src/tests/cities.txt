@@ -1,11 +1,12 @@
-SAN FRANCISCO
-LOS ANGELES
-MEXICO CITY
-CHICAGO
-ATLANTA
-MONTREAL
-NEW YORK
-WASHINGTON
-MIAMI
-TOKYO
-SYDNEY
+Tokyo
+Miami
+Ottawa
+Dhaka
+Vancouver
+Sao Paulo
+Mumbai
+Chicago
+Shanghai
+Karachi
+Baghdad
+Chongqing
