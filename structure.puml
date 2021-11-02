@@ -1,0 +1,41 @@
+@startuml
+
+title Team MST - Class UML Diagram
+
+
+class Attack {
+  -Type type
+  -String date
+  -String time
+  -String city
+
+  +Attack(): (type, date, time, city)
+  +Attack(): (type, date, time, city)
+
+  +getCity(): String
+  +getDate(): String
+  +getType(): Type
+  +setCity(): void (city)
+}
+
+class City {
+-String name
+-Boolean firewall
+-ArrayList<Attack> attacks
+-Point position
+-Status currStatus
+
++City(): (name, firewall)
+}
+
+class Graph {
+
+}
+
+class Route {
+
+}
+
+class Main {
+}
+@enduml

@@ -6,6 +6,10 @@ FALL 2021
 - Sayfullah Eid
 - Tolu Adebayo
 
+## General Structure
+
+![General Structure](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/fusionstreak/MST_TermProject/master/structure.puml)
+
 ## TODO
 - Implement parsing of `graph.txt`
 - Implement parsing of `attack.txt`
