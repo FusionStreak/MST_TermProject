@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /**
  * Main class
  *
@@ -8,7 +12,7 @@
 
 public class Main {
     public static void main(String[] args) {
-        // write your code here
+        parseAttacks("src/tests/attack.txt");
     }
 
     /**
@@ -18,8 +22,22 @@ public class Main {
      *
      * @param filename path to file
      */
-    private void parseAttacks(String filename) {
-
+    private static void parseAttacks(String filename) throws RuntimeException{
+        Attack[] attacks = new Attack[2558];
+        try {
+            int i = 0;
+            Scanner f = new Scanner(new File(filename));
+            while (f.hasNext()) {
+                String[] line = f.nextLine().split("[,][ ]");
+                attacks[i] = new Attack(line[1], line[2], line[3], line[0]);
+                System.out.println(attacks[i]);
+                i++;
+            }
+            f.close();
+        }catch (FileNotFoundException e) {
+            System.out.println("File not found! Check if filename/path is correct!");
+            System.exit(1);
+        }
     }
 
     /**
@@ -29,7 +47,7 @@ public class Main {
      *
      * @param filename path to file
      */
-    private void parseGraph(String filename) {
+    private static void parseGraph(String filename) {
 
     }
 }

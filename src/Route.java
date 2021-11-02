@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Route class
  *
@@ -7,27 +9,17 @@
  */
 
 public class Route {
-    private City c1;
-    private City c2;
+    private City[] cities = new City[2];
 
     public Route(City city1, City city2) {
-        this.c1 = city1;
-        this.c2 = city2;
+        this.cities[0] = city1;
+        this.cities[1] = city2;
     }
 
-    public City getC1() {
-        return c1;
-    }
-
-    public void setC1(City c1) {
-        this.c1 = c1;
-    }
-
-    public City getC2() {
-        return c2;
-    }
-
-    public void setC2(City c2) {
-        this.c2 = c2;
+    public Boolean isCityInRoute(City city) {
+        if (Arrays.asList(cities).contains(city)){
+            return true;
+        }
+        return false;
     }
 }

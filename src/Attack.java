@@ -8,20 +8,25 @@
 
 public class Attack {
     private Type type;
-    private String dateTime;
+    private String date;
+    private String time;
     private String city;
 
-    public Attack(Type type, String dateTime, String city) {
+    public Attack(Type type, String date, String time, String city) {
         this.type = type;
-        this.dateTime = dateTime;
+        this.date = date;
+        this.time = time;
         this.city = city;
     }
 
-    public Attack(String type, String dateTime, String city) {
-        if (type.equals("BLACK")) new Attack(Type.BLACK, dateTime, city);
-        if (type.equals("BLUE")) new Attack(Type.BLUE, dateTime, city);
-        if (type.equals("RED")) new Attack(Type.RED, dateTime, city);
-        if (type.equals("YELLOW")) new Attack(Type.YELLOW, dateTime, city);
+    public Attack(String type, String date, String time, String city) {
+        if (type.equals("BLACK")) this.type = Type.BLACK;
+        if (type.equals("BLUE")) this.type = Type.BLUE;
+        if (type.equals("RED")) this.type = Type.RED;
+        if (type.equals("YELLOW")) this.type = Type.YELLOW;
+        this.date = date;
+        this.time = time;
+        this.city = city;
     }
 
     public Type getType() {
@@ -33,11 +38,11 @@ public class Attack {
     }
 
     public String getDateTime() {
-        return dateTime;
+        return date;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setDateTime(String date) {
+        this.date = date;
     }
 
     public String getCity() {
@@ -46,6 +51,16 @@ public class Attack {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "Attack{" +
+                "type=" + type +
+                ", date='" + date + '\'' +
+                ", time='" + time + '\'' +
+                ", city='" + city + '\'' +
+                '}';
     }
 
     public enum Type {
