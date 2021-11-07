@@ -1,41 +1,104 @@
 @startuml
 
+skinparam{
+    backgroundColor 222222
+    defaultFontName Courier
+    defaultFontColor white
+
+    ClassBackgroundColor 333333
+    ClassBorderColor AAAAAA
+    ClassHeaderBackgroundColor 444444
+    ClassFontSize 17
+    ClassFontStyle bold
+    ClassAttributeFontSize 15
+
+    lineType orthogonal
+}
+
 title Team MST - Class UML Diagram
 
 
 class Attack {
-  -Type type
-  -String date
-  -String time
-  -String city
-
-  +Attack(): (type, date, time, city)
-  +Attack(): (type, date, time, city)
-
-  +getCity(): String
-  +getDate(): String
-  +getType(): Type
-  +setCity(): void (city)
+  -type                               Type
+  -date                             String
+  -time                             String
+  -city                             String
+  --[Constructors]--
+  +Attack(String, String, String, String)
+  +Attack(Type, String, String, String)
+  --[Methods]--
+  ..Getters..
+  +getCity()                        String
+  +getDate()                        String
+  +getType()                          Type
+  ..Setters..
+  +setCity(String)                    void
+  +setDate(String)                    void
+  +setTime(String)                    void
+  +setType(Type)                      void
+  ..Overloaded..
+  +toString()                       String
 }
 
 class City {
--String name
--Boolean firewall
--ArrayList<Attack> attacks
--Point position
--Status currStatus
+-name                                  String
+-firewall                             Boolean
+-attacks                    ArrayList<Attack>
+-position                               Point
+-currStatus                            Status
+--[Constructors]--
++City(String, Boolean)
+--[Methods]--
++addAttack(Attack)                       void
++alert(Type)                             void
+..Getters..
++getAttacks()               ArrayList<Attack>
++getCurrStatus()                       Status
++hasFirewall()                        Boolean
++getName()                             String
++getPosition()                          Point
+..Setters..
 
-+City(): (name, firewall)
 }
 
 class Graph {
-
+-routes             ArrayList<Route>
+-cities              ArrayList<City>
+-nb_cities                       int
+--[Constructors]--
+Graph()
+Graph(String)
+--[Methods]--
++addCity(City)                  void
++addCity(String, Boolean)       void
++addRoute(Route)                void
++attack(Attack)                 void
++hasFirewall()                String
++hasAttackedFirewall()        String
++isInactive()                 String
++isInfected()                 String
++outbreaks()                  String
+..Overloaded..
++toString()                   String
 }
 
 class Route {
-
+-cities                 City[]
+--[Constructors]--
+Route(City, City)
+--[Methods]--
++isCityInRoute(City)    Boolean
++getNeighbour(City)        City
 }
 
 class Main {
+--[Methods]--
+main(String[])          void
+parseAttacks(String)    void
+parseGraph(String)      void
 }
+
+City <--l--* Attack
+Graph *--> City
+Graph *-l-> Route
 @enduml
