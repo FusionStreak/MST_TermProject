@@ -1,7 +1,9 @@
 # TEAM MST - NET/OSS3004 Term Project
+
 FALL 2021
 
 ## Team Members
+
 - Madeline Quang
 - Sayfullah Eid
 - Tolu Adebayo
@@ -11,6 +13,7 @@ FALL 2021
 ![General Structure](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/fusionstreak/MST_TermProject/master/structure.puml)
 
 ## TODO
+
 - Implement parsing of `graph.txt`
 - Implement parsing of `attack.txt`
 - Add logic for dealing with attacks:
@@ -27,4 +30,3 @@ FALL 2021
 - Safe route:
   - List of 'safe' routes between two City nodes
   - Determine shortest routes
-

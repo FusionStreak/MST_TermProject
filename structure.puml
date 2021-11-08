@@ -1,7 +1,7 @@
-@startuml
+@startuml GeneralStructure
 
 skinparam{
-    backgroundColor 222222
+    backgroundColor 202020
     defaultFontName Courier
     defaultFontColor white
 
@@ -58,7 +58,11 @@ class City {
 +getName()                             String
 +getPosition()                          Point
 ..Setters..
-
++setAttacks(ArrayList<Attack>)           void
++setCurrStatus(Status)                   void
++setFirewall(Boolean)                    void
++setName(String)                         void
++setPosition(Point)                      void
 }
 
 class Graph {
@@ -73,6 +77,8 @@ Graph(String)
 +addCity(String, Boolean)       void
 +addRoute(Route)                void
 +attack(Attack)                 void
++findPath(String, String)     String
+..Queries..
 +hasFirewall()                String
 +hasAttackedFirewall()        String
 +isInactive()                 String
@@ -83,7 +89,7 @@ Graph(String)
 }
 
 class Route {
--cities                 City[]
+-cities                  City[]
 --[Constructors]--
 Route(City, City)
 --[Methods]--

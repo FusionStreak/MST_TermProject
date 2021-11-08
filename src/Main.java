@@ -23,7 +23,7 @@ public class Main {
      * @param filename path to file
      */
     private static void parseAttacks(String filename) throws RuntimeException{
-        Attack[] attacks = new Attack[2558];
+        Attack[] attacks = new Attack[400];
         try {
             int i = 0;
             Scanner f = new Scanner(new File(filename));
