@@ -1,3 +1,6 @@
+import java.util.Date;
+import java.text.ParseException;
+
 /**
  * Attack class
  *
@@ -7,26 +10,70 @@
  */
 
 public class Attack {
+    /** The Type of the attack */
     private Type type;
-    private String date;
-    private String time;
+    /** The date and time of the attack, stored as a java.util.Date object */
+    private Date dateTime;
+    /** Name of the target city */
     private String city;
 
-    public Attack(Type type, String date, String time, String city) {
+    /**
+     * Basic constructor of Attack object. The{@code dateTime String} will be parsed
+     * into a {@code Date} object.
+     * 
+     * @param type     Type of attack
+     * @param dateTime String of date and time of attack (yyyy-MM-dd HH:mm:ss)
+     * @param city     String name of the target city
+     * @throws ParseException Throws exception if parsing dateTime String fails
+     */
+    public Attack(Type type, String dateTime, String city) throws ParseException {
         this.type = type;
-        this.date = date;
-        this.time = time;
+        this.dateTime = toDate(dateTime);
         this.city = city;
     }
 
-    public Attack(String type, String date, String time, String city) {
-        if (type.equals("BLACK")) this.type = Type.BLACK;
-        if (type.equals("BLUE")) this.type = Type.BLUE;
-        if (type.equals("RED")) this.type = Type.RED;
-        if (type.equals("YELLOW")) this.type = Type.YELLOW;
-        this.date = date;
-        this.time = time;
+    /**
+     * Basic constructor of Attack object. The{@code dateTime String} will be parsed
+     * into a {@code Date} object. The {@code type String} will be parsed into a the
+     * correct {@code Type enum}
+     * 
+     * @param type     String of the type of attack. (BLACK|BLUE|RED|YELLOW)
+     * @param dateTime String of date and time of attack (yyyy-MM-dd HH:mm:ss)
+     * @param city     String name of the target city
+     * @throws ParseException Throws exception if parsing dateTime String fails
+     */
+    public Attack(String type, String dateTime, String city) throws ParseException {
+        if (type.equals("BLACK"))
+            this.type = Type.BLACK;
+        if (type.equals("BLUE"))
+            this.type = Type.BLUE;
+        if (type.equals("RED"))
+            this.type = Type.RED;
+        if (type.equals("YELLOW"))
+            this.type = Type.YELLOW;
+        this.dateTime = toDate(dateTime);
         this.city = city;
+    }
+
+    /**
+     * Parses a date string into a{@code java.util.Date} object.
+     * 
+     * @param dT String of date and time (yyyy-MM-dd HH:mm:ss)
+     * @return {@code Date} object from string
+     * @throws ParseException Throws exception if parse fails
+     */
+    private Date toDate(String dT) throws ParseException {
+        return new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dT);
+    }
+
+    /**
+     * Translates a{@code Date} object to the{@code long} epoch time in seconds
+     * 
+     * @param dT {@code Date} object to be translated
+     * @return {@code long} epoch time
+     */
+    private long toEpoch(Date dT) {
+        return dT.getTime() / 1000;
     }
 
     public Type getType() {
@@ -37,12 +84,12 @@ public class Attack {
         this.type = type;
     }
 
-    public String getDateTime() {
-        return date;
+    public Date getDateTime() {
+        return this.dateTime;
     }
 
-    public void setDateTime(String date) {
-        this.date = date;
+    public void setDate(String dateTime) throws ParseException {
+        this.dateTime = toDate(dateTime);
     }
 
     public String getCity() {
@@ -55,18 +102,11 @@ public class Attack {
 
     @Override
     public String toString() {
-        return "Attack{" +
-                "type=" + type +
-                ", date='" + date + '\'' +
-                ", time='" + time + '\'' +
-                ", city='" + city + '\'' +
-                '}';
+        return "Attack{" + type + ", " + this.city + ", " + dateTime + '\'' + '}';
     }
 
+    /** The types of attacks possible */
     public enum Type {
-        BLACK,
-        BLUE,
-        RED,
-        YELLOW
+        BLACK, BLUE, RED, YELLOW
     }
 }

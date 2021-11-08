@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 /**
@@ -16,34 +17,32 @@ public class Main {
     }
 
     /**
-     * Parses through txt file containing attacks
-     * Constructs the relevant Attack objects
-     * Calls the relevant functions on the graph
+     * Parses through txt file containing attacks Constructs the relevant Attack
+     * objects Calls the relevant functions on the graph
      *
      * @param filename path to file
      */
-    private static void parseAttacks(String filename) throws RuntimeException{
+    private static void parseAttacks(String filename) throws RuntimeException {
         Attack[] attacks = new Attack[400];
         try {
             int i = 0;
             Scanner f = new Scanner(new File(filename));
             while (f.hasNext()) {
                 String[] line = f.nextLine().split("[,][ ]");
-                attacks[i] = new Attack(line[1], line[2], line[3], line[0]);
+                attacks[i] = new Attack(line[1], line[2] + " " + line[3], line[0]);
                 System.out.println(attacks[i]);
                 i++;
             }
             f.close();
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | ParseException e) {
             System.out.println("File not found! Check if filename/path is correct!");
             System.exit(1);
         }
     }
 
     /**
-     * Parses through the txt file containing cities and routes
-     * Constructs the relevant City and Route objects
-     * Calls the relevant function on the graph
+     * Parses through the txt file containing cities and routes Constructs the
+     * relevant City and Route objects Calls the relevant function on the graph
      *
      * @param filename path to file
      */

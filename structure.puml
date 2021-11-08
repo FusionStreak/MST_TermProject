@@ -20,91 +20,91 @@ title Team MST - Class UML Diagram
 
 class Attack {
   -type                               Type
-  -date                             String
-  -time                             String
+  -dateTime                           Date
   -city                             String
   --[Constructors]--
   +Attack(String, String, String, String)
   +Attack(Type, String, String, String)
   --[Methods]--
+  -toDate(String)                     Date
+  -toEpoch(Date)                      long
   ..Getters..
   +getCity()                        String
-  +getDate()                        String
+  +getDateTime()                      Date
   +getType()                          Type
   ..Setters..
   +setCity(String)                    void
-  +setDate(String)                    void
-  +setTime(String)                    void
+  +setDateTime(String)                void
   +setType(Type)                      void
   ..Overloaded..
   +toString()                       String
 }
 
 class City {
--name                                  String
--firewall                             Boolean
--attacks                    ArrayList<Attack>
--position                               Point
--currStatus                            Status
---[Constructors]--
-+City(String, Boolean)
---[Methods]--
-+addAttack(Attack)                       void
-+alert(Type)                             void
-..Getters..
-+getAttacks()               ArrayList<Attack>
-+getCurrStatus()                       Status
-+hasFirewall()                        Boolean
-+getName()                             String
-+getPosition()                          Point
-..Setters..
-+setAttacks(ArrayList<Attack>)           void
-+setCurrStatus(Status)                   void
-+setFirewall(Boolean)                    void
-+setName(String)                         void
-+setPosition(Point)                      void
+  -name                                  String
+  -firewall                             Boolean
+  -attacks                    ArrayList<Attack>
+  -position                               Point
+  -currStatus                            Status
+  --[Constructors]--
+  +City(String, Boolean)
+  --[Methods]--
+  +addAttack(Attack)                       void
+  +alert(Type)                             void
+  ..Getters..
+  +getAttacks()               ArrayList<Attack>
+  +getCurrStatus()                       Status
+  +hasFirewall()                        Boolean
+  +getName()                             String
+  +getPosition()                          Point
+  ..Setters..
+  +setAttacks(ArrayList<Attack>)           void
+  +setCurrStatus(Status)                   void
+  +setFirewall(Boolean)                    void
+  +setName(String)                         void
+  +setPosition(Point)                      void
 }
 
 class Graph {
--routes             ArrayList<Route>
--cities              ArrayList<City>
--nb_cities                       int
---[Constructors]--
-Graph()
-Graph(String)
---[Methods]--
-+addCity(City)                  void
-+addCity(String, Boolean)       void
-+addRoute(Route)                void
-+attack(Attack)                 void
-+findPath(String, String)     String
-..Queries..
-+hasFirewall()                String
-+hasAttackedFirewall()        String
-+isInactive()                 String
-+isInfected()                 String
-+outbreaks()                  String
-..Overloaded..
-+toString()                   String
+  -routes             ArrayList<Route>
+  -cities              ArrayList<City>
+  -nb_cities                       int
+  --[Constructors]--
+  Graph()
+  Graph(String)
+  --[Methods]--
+  +addCity(City)                  void
+  +addCity(String, Boolean)       void
+  +addRoute(Route)                void
+  +attack(Attack)                 void
+  +findPath(String, String)     String
+  ..Queries..
+  +hasFirewall()                String
+  +hasAttackedFirewall()        String
+  +isInactive()                 String
+  +isInfected()                 String
+  +outbreaks()                  String
+  ..Overloaded..
+  +toString()                   String
 }
 
 class Route {
--cities                  City[]
---[Constructors]--
-Route(City, City)
---[Methods]--
-+isCityInRoute(City)    Boolean
-+getNeighbour(City)        City
+  -cities                  City[]
+  --[Constructors]--
+  Route(City, City)
+  --[Methods]--
+  +isCityInRoute(City)    Boolean
+  +getNeighbour(City)        City
 }
 
 class Main {
---[Methods]--
-main(String[])          void
-parseAttacks(String)    void
-parseGraph(String)      void
+  --[Methods]--
+  main(String[])          void
+  parseAttacks(String)    void
+  parseGraph(String)      void
 }
 
 City <--l--* Attack
 Graph *--> City
-Graph *-l-> Route
+Graph <-l-* Route
 @enduml
