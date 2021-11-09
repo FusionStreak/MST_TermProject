@@ -72,7 +72,7 @@ public class City {
      */
     public boolean addAttack(Attack a) {
         this.attacks.add(a);
-        if (this.currStatus == Status.OFFLINE)
+        if (this.currStatus == Status.OFFLINE || this.firewall == true)
             return false;
         this.attackTypes.add(a.getType());
         int within4 = 0;
