@@ -27,7 +27,8 @@ class Attack {
   +Attack(Type, String, String, String)
   --[Methods]--
   -toDate(String)                     Date
-  -toEpoch(Date)                      long
+  +toEpoch()                          long
+  +compare(Attack)                    long
   ..Getters..
   +getCity()                        String
   +getDateTime()                      Date
@@ -38,29 +39,30 @@ class Attack {
   +setType(Type)                      void
   ..Overloaded..
   +toString()                       String
+  +equals(Object)                  boolean
 }
 
 class City {
   -name                                  String
-  -firewall                             Boolean
+  -firewall                             boolean
   -attacks                    ArrayList<Attack>
   -position                               Point
   -currStatus                            Status
   --[Constructors]--
   +City(String, Boolean)
   --[Methods]--
-  +addAttack(Attack)                       void
+  +addAttack(Attack)                    boolean
   +alert(Type)                             void
   ..Getters..
   +getAttacks()               ArrayList<Attack>
   +getCurrStatus()                       Status
-  +hasFirewall()                        Boolean
+  +hasFirewall()                        boolean
   +getName()                             String
   +getPosition()                          Point
   ..Setters..
   +setAttacks(ArrayList<Attack>)           void
   +setCurrStatus(Status)                   void
-  +setFirewall(Boolean)                    void
+  +setFirewall(boolean)                    void
   +setName(String)                         void
   +setPosition(Point)                      void
 }

@@ -67,13 +67,24 @@ public class Attack {
     }
 
     /**
-     * Translates a{@code Date} object to the{@code long} epoch time in seconds
+     * Translates a{@code Date} object to the{@code long} epoch time in
+     * seconds(since 1970)
      * 
      * @param dT {@code Date} object to be translated
      * @return {@code long} epoch time
      */
-    private long toEpoch(Date dT) {
-        return dT.getTime() / 1000;
+    public long toEpoch() {
+        return this.dateTime.getTime() / 1000;
+    }
+
+    /**
+     * Get the number of seconds between this attack and{@code a}
+     * 
+     * @param a {@code Attack} object to be comapred with
+     * @return long integer number of seconds
+     */
+    public long compare(Attack a) {
+        return this.toEpoch() - a.toEpoch();
     }
 
     public Type getType() {
@@ -103,6 +114,18 @@ public class Attack {
     @Override
     public String toString() {
         return "Attack{" + type + ", " + this.city + ", " + dateTime + '\'' + '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (obj instanceof Attack) {
+            Attack a = (Attack) obj;
+            if (a.type == this.type && a.dateTime.equals(this.dateTime) && a.city.equals(this.city))
+                return true;
+        }
+        return false;
     }
 
     /** The types of attacks possible */

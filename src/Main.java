@@ -40,13 +40,4 @@ public class Main {
         }
     }
 
-    /**
-     * Parses through the txt file containing cities and routes Constructs the
-     * relevant City and Route objects Calls the relevant function on the graph
-     *
-     * @param filename path to file
-     */
-    private static void parseGraph(String filename) {
-
-    }
 }

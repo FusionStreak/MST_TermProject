@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * City class
@@ -10,14 +12,21 @@ import java.util.ArrayList;
 
 public class City {
     private String name;
-    private Boolean firewall;
+    private boolean firewall;
     private ArrayList<Attack> attacks = new ArrayList<>();
+    private Set<Attack.Type> attackTypes = new HashSet<>();
     private Point position = new Point(0, 0);
     private Status currStatus = Status.SAFE;
 
     public City(String name, Boolean firewall) {
         this.name = name;
         this.firewall = firewall;
+    }
+
+    private boolean putDown() {
+        if (this.attackTypes.size() >= 2 && this.attacks.size() >= 6)
+            return true;
+        return false;
     }
 
     public String getName() {
@@ -28,11 +37,11 @@ public class City {
         this.name = name;
     }
 
-    public Boolean getFirewall() {
+    public boolean getFirewall() {
         return firewall;
     }
 
-    public void setFirewall(Boolean firewall) {
+    public void setFirewall(boolean firewall) {
         this.firewall = firewall;
     }
 
@@ -44,8 +53,48 @@ public class City {
         this.attacks = attacks;
     }
 
-    public void addAttack(Attack a) {
+    /**
+     * Add{@code Attack a} to city. Parses through attacks in this city.
+     * 
+     * If 2 or more of the same type as{@code a} within 2 minutes an alert is sent
+     * to{@code System.out}.
+     * 
+     * If 4 or more of the same type as{@code a} within 4 minutes, return true for
+     * outbreak
+     * 
+     * Determines if this city should be put offline, 6 or more attacks of at least
+     * 2 types
+     * 
+     * Defaults to{@code false} if {@code currStatus == OFFLINE}
+     * 
+     * @param a attack to be added
+     * @return {@code true} if outbreak,{@code false} otherwise
+     */
+    public boolean addAttack(Attack a) {
         this.attacks.add(a);
+        if (this.currStatus == Status.OFFLINE)
+            return false;
+        this.attackTypes.add(a.getType());
+        int within4 = 0;
+        int within2 = 0;
+        for (Attack attack : this.attacks) {
+            if (attack.getType() == a.getType()) {
+                long comp = a.compare(attack);
+                if (comp <= 120) {
+                    within2++;
+                }
+                if (comp <= 240) {
+                    within4++;
+                }
+            }
+            if (within4 >= 4)
+                return true;
+        }
+        if (within2 >= 2)
+            this.alert(a.getType());
+        if (this.putDown())
+            this.currStatus = Status.OFFLINE;
+        return false;
     }
 
     public Point getPosition() {
@@ -64,24 +113,18 @@ public class City {
         this.currStatus = currStatus;
     }
 
-    public void alert(Attack.Type type) {
-        System.out.println(this.name + " has been attacked by " + type + " twice within 2 minutes!");
+    private void alert(Attack.Type type) {
+        System.out.println(this.name + " has been attacked by " + type + " multiple times within 2 minutes!");
     }
 
     @Override
     public String toString() {
-        return name +
-                ":\nfirewall= " + firewall +
-                "\nattacks= " + attacks.size() +
-                "\nposition= " + position +
-                "\ncurrStatus= " + currStatus;
+        return name + ":\nfirewall= " + firewall + "\nattacks= " + attacks.size() + "\nposition= " + position
+                + "\ncurrStatus= " + currStatus;
     }
 
-
     private enum Status {
-        OFFLINE,
-        SAFE,
-        UNSAFE,
+        OFFLINE, SAFE, UNSAFE,
     }
 
     public static class Point {
