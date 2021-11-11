@@ -13,10 +13,8 @@ import java.util.Scanner;
  */
 
 public class Graph {
-    /** ArrayList<> of all the City objects in the Graph */
-    private ArrayList<City> cities = new ArrayList<City>();
     /** HashMap<> of City objects and list of neighbouring cities */
-    private HashMap<City, City[]> rts = new HashMap<>();
+    private HashMap<City, City[]> citiesMap = new HashMap<>();
 
     Graph() {
 
@@ -96,7 +94,7 @@ public class Graph {
      */
     private City[] findCities(String c1, String c2) {
         City[] c = { null, null };
-        for (City city : this.cities) {
+        for (City city : this.citiesMap.keySet()) {
             if (city.getName().equals(c1)) {
                 c[0] = city;
             }
@@ -124,7 +122,7 @@ public class Graph {
      * @param c City object to be added
      */
     public void addCity(City c) {
-        this.cities.add(c);
+        this.citiesMap.put(c, new City[1]);
     }
 
     /**
@@ -137,8 +135,7 @@ public class Graph {
      */
     public void addCity(String name, boolean fire, City.Point pos) {
         City c1 = new City(name, fire, pos);
-        addCity(c1);
-        this.rts.put(c1, new City[1]);
+        this.addCity(c1);
     }
 
     /**
@@ -148,8 +145,8 @@ public class Graph {
      */
     public void addRoute(String c1, String c2) {
         City[] c = this.findCities(c1, c2);
-        this.rts.put(c[0], this.extendArray(this.rts.get(c[0]), c[1]));
-        this.rts.put(c[1], this.extendArray(this.rts.get(c[1]), c[0]));
+        this.citiesMap.put(c[0], this.extendArray(this.citiesMap.get(c[0]), c[1]));
+        this.citiesMap.put(c[1], this.extendArray(this.citiesMap.get(c[1]), c[0]));
     }
 
     /**
@@ -160,6 +157,8 @@ public class Graph {
      * @return
      */
     public String hasPath(String c1, String c2) {
+        City[] cit = this.findCities(c1, c2);
+
         return "No path available between '" + c1 + "' and '" + c2 + "'";
     }
 
@@ -212,11 +211,11 @@ public class Graph {
 
     public String toString() {
         String str = "";
-        for (City city : this.cities) {
+        for (City city : this.citiesMap.keySet()) {
             str += city.toString() + "\n";
         }
-        for (City city : this.rts.keySet()) {
-            str += city.getName() + ": " + this.printCityNames(this.rts.get(city)) + "\n";
+        for (City city : this.citiesMap.keySet()) {
+            str += city.getName() + ": " + this.printCityNames(this.citiesMap.get(city)) + "\n";
         }
         return str;
     }
