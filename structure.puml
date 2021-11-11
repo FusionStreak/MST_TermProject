@@ -68,26 +68,28 @@ class City {
 }
 
 class Graph {
-  -routes             ArrayList<Route>
-  -cities              ArrayList<City>
-  -nb_cities                       int
+  -cities                          ArrayList<City>
+  -rts                       HashMap<City, City[]>
   --[Constructors]--
   Graph()
   Graph(String)
   --[Methods]--
-  +addCity(City)                  void
-  +addCity(String, Boolean)       void
-  +addRoute(Route)                void
-  +attack(Attack)                 void
-  +findPath(String, String)     String
+  -extendArray(City[], City)                City[]
+  -printCityName(City[])                    String
+  -findCities(String, String)               City[]
+  +addCity(City)                              void
+  +addCity(String, boolean, City.Point)       void
+  +addRoute(String, String)                   void
+  +attack(Attack)                             void
+  +findPath(String, String)                 String
   ..Queries..
-  +hasFirewall()                String
-  +hasAttackedFirewall()        String
-  +isInactive()                 String
-  +isInfected()                 String
-  +outbreaks()                  String
+  +hasFirewall()                            String
+  +hasAttackedFirewall()                    String
+  +isInactive()                             String
+  +isInfected()                             String
+  +outbreaks()                              String
   ..Overloaded..
-  +toString()                   String
+  +toString()                               String
 }
 
 class Route {

@@ -1,4 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  * Graph class
@@ -9,10 +13,10 @@ import java.util.ArrayList;
  */
 
 public class Graph {
-    /** ArrayList<> of all the Route(connections) objects in the Graph */
-    private ArrayList<Route> routes = new ArrayList<Route>();
     /** ArrayList<> of all the City objects in the Graph */
     private ArrayList<City> cities = new ArrayList<City>();
+    /** HashMap<> of City objects and list of neighbouring cities */
+    private HashMap<City, City[]> rts = new HashMap<>();
 
     Graph() {
 
@@ -24,7 +28,83 @@ public class Graph {
      * @param file path to graph file
      */
     Graph(String file) {
+        try {
+            Scanner f = new Scanner(new File(file));
+            boolean isRoutes = false;
+            while (f.hasNext()) {
+                String line = f.nextLine();
+                if (line.contains("---")) {
+                    isRoutes = true;
+                } else if (!isRoutes) {
+                    String[] l = line.split("[,][ ]");
+                    l[1] = l[1].replace("(", "");
+                    l[2] = l[2].replace(")", "");
+                    City.Point p = new City.Point(Float.parseFloat(l[1]), Float.parseFloat(l[2]));
+                    if (l.length == 3) {
+                        this.addCity(l[0], false, p);
+                    } else if (l.length == 4) {
+                        this.addCity(l[0], true, p);
+                    }
+                } else {
+                    String[] r = line.split("[,][ ]");
+                    this.addRoute(r[0], r[1]);
+                }
 
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+        }
+    }
+
+    /**
+     * 
+     * @param cit
+     * @param c1
+     * @return
+     */
+    private City[] extendArray(City[] cit, City c1) {
+        if (cit[0] == null) {
+            cit[0] = c1;
+            return cit;
+        }
+        City[] tmp = new City[cit.length + 1];
+        System.arraycopy(cit, 0, tmp, 0, cit.length);
+        tmp[cit.length] = c1;
+        return tmp;
+    }
+
+    /**
+     * 
+     * @param cit
+     * @return
+     */
+    private String printCityNames(City[] cit) {
+        String str = "";
+        for (City city : cit) {
+            if (city == null)
+                break;
+            str += city.getName() + ", ";
+        }
+        return str;
+    }
+
+    /**
+     * 
+     * @param c1
+     * @param c2
+     * @return
+     */
+    private City[] findCities(String c1, String c2) {
+        City[] c = { null, null };
+        for (City city : this.cities) {
+            if (city.getName().equals(c1)) {
+                c[0] = city;
+            }
+            if (city.getName().equals(c2)) {
+                c[1] = city;
+            }
+        }
+        return c;
     }
 
     /**
@@ -48,23 +128,28 @@ public class Graph {
     }
 
     /**
-     * Add a City to the Graph object given a String(city name) and Boolean(if the
-     * city has a firewall)
+     * Add a City to the Graph object given a String(city name), boolean(if the city
+     * has a firewall), and City.Point object
      * 
      * @param name Name of the city
      * @param fire If the city has a firewall or not
+     * @param pos  Position of city
      */
-    public void addCity(String name, Boolean fire) {
-        addCity(new City(name, fire));
+    public void addCity(String name, boolean fire, City.Point pos) {
+        City c1 = new City(name, fire, pos);
+        addCity(c1);
+        this.rts.put(c1, new City[1]);
     }
 
     /**
-     * Add a Route object to the Graph
      * 
-     * @param r ROute object to be added
+     * @param c1
+     * @oaram c2
      */
-    public void addRoute(Route r) {
-        this.routes.add(r);
+    public void addRoute(String c1, String c2) {
+        City[] c = this.findCities(c1, c2);
+        this.rts.put(c[0], this.extendArray(this.rts.get(c[0]), c[1]));
+        this.rts.put(c[1], this.extendArray(this.rts.get(c[1]), c[0]));
     }
 
     /**
@@ -75,7 +160,7 @@ public class Graph {
      * @return
      */
     public String hasPath(String c1, String c2) {
-        return "";
+        return "No path available between '" + c1 + "' and '" + c2 + "'";
     }
 
     /**
@@ -126,6 +211,13 @@ public class Graph {
     }
 
     public String toString() {
-        return "";
+        String str = "";
+        for (City city : this.cities) {
+            str += city.toString() + "\n";
+        }
+        for (City city : this.rts.keySet()) {
+            str += city.getName() + ": " + this.printCityNames(this.rts.get(city)) + "\n";
+        }
+        return str;
     }
 }

@@ -13,7 +13,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        parseAttacks("src/tests/attack.txt");
+        // parseAttacks("src/tests/attack.txt");
+        Graph main = new Graph("src/tests/graph.txt");
+        System.out.println(main);
     }
 
     /**

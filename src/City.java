@@ -18,9 +18,10 @@ public class City {
     private Point position = new Point(0, 0);
     private Status currStatus = Status.SAFE;
 
-    public City(String name, Boolean firewall) {
+    public City(String name, boolean firewall, Point point) {
         this.name = name;
         this.firewall = firewall;
+        this.position = point;
     }
 
     private boolean putDown() {
@@ -134,6 +135,13 @@ public class City {
         public Point(float x, float y) {
             this.xPos = x;
             this.yPos = y;
+        }
+
+        public Point(String pos) {
+            String[] p = pos.replace("(", "").replace(")", "").split("[,][ ]");
+            System.out.println(pos);
+            this.xPos = Float.parseFloat(p[0]);
+            this.yPos = Float.parseFloat(p[1]);
         }
 
         @Override
