@@ -1,18 +1,24 @@
 @startuml GeneralStructure
 
 skinparam{
-    backgroundColor 202020
+    backgroundColor #202020
     defaultFontName Courier
-    defaultFontColor white
+    defaultFontColor #FFFFFF
 
-    ClassBackgroundColor 333333
-    ClassBorderColor AAAAAA
-    ClassHeaderBackgroundColor 444444
-    ClassFontSize 17
+    ClassBackgroundColor #333333
+    ClassBorderColor #AAAAAA
+    ClassHeaderBackgroundColor #444444
+    ClassFontSize 19
     ClassFontStyle bold
-    ClassAttributeFontSize 15
+    ClassAttributeFontSize 17
+    
 
-    lineType orthogonal
+    Linetype orthogonal
+    Nodesep 150
+    Ranksep 150
+    ArrowThickness 3
+    ArrowColor #FFFFFF
+  
 }
 
 title Team MST - Class UML Diagram
@@ -68,8 +74,7 @@ class City {
 }
 
 class Graph {
-  -cities                          ArrayList<City>
-  -rts                       HashMap<City, City[]>
+  -citiesMap                 HashMap<City, City[]>
   --[Constructors]--
   Graph()
   Graph(String)
@@ -92,15 +97,6 @@ class Graph {
   +toString()                               String
 }
 
-class Route {
-  -cities                  City[]
-  --[Constructors]--
-  Route(City, City)
-  --[Methods]--
-  +isCityInRoute(City)    Boolean
-  +getNeighbour(City)        City
-}
-
 class Main {
   --[Methods]--
   main(String[])          void
@@ -109,6 +105,6 @@ class Main {
 }
 
 City <--l--* Attack
-Graph *--> City
-Graph <-l-* Route
+Graph <-u-* City
+Main <..r.. Graph
 @enduml
