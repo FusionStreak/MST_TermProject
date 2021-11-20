@@ -157,7 +157,15 @@ public class Graph {
      */
     public String hasPath(String c1, String c2) {
         City[] cit = this.findCities(c1, c2);
-
+        if (cit[0].getCurrStatus() != City.Status.SAFE)
+            return c1 + " is infected/offline";
+        if (cit[1].getCurrStatus() != City.Status.SAFE)
+            return c2 + " is infected/offline";
+        for (City city : this.citiesMap.get(cit[0])) {
+            if (city.equals(cit[1])) {
+                return c1 + " is directly connected to " + c2;
+            }
+        }
         return "No path available between '" + c1 + "' and '" + c2 + "'";
     }
 

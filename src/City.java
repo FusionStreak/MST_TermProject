@@ -124,7 +124,7 @@ public class City {
                 + "\ncurrStatus= " + currStatus;
     }
 
-    private enum Status {
+    public enum Status {
         OFFLINE, SAFE, UNSAFE,
     }
 

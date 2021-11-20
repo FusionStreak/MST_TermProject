@@ -2,6 +2,17 @@
 
 FALL 2021
 
+```txt
+                                 ,-^-.
+                                 |\/\|
+                                 `-V-'
+                                   H
+                                   H        PlagueSim
+                                   H           v0.5
+                                .-;":-.
+                              ,'  |  `; \
+```
+
 ## Team Members
 
 - Madeline Quang
