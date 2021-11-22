@@ -44,7 +44,9 @@ public class Main {
      * Prints the header of the application to the console
      */
     private static void printHeader() {
+        out.println("=========================");
         out.println("""
+
                   ,-^-.
                   |\\/\\|
                   `-V-'

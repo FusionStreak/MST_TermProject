@@ -102,19 +102,19 @@ class Main {
   -attacksA                        Attack[]
   -in                               Scanner
   --[Methods]--
-  main(String[])                       void
-  parseAttacks(String)                 void
+  +main(String[])                       void
   ..CLI..
-  printHeader()                        void
-  mainMenu()                         String
-  gMenu()                              void
-  aMenu()                              void
-  sMenu()                              void
+  -printHeader()                        void
+  -mainMenu()                         String
+  -gMenu()                              void
+  -aMenu()                              void
+  -sMenu()                              void
   ..Supporting..
-  sortAttacks(Attack[], int, int)      void
-  partition(Attack[], int, int)         int
-  printAttacks()                       void
-  shuffleArray(Attack[])               void
+  -parseAttacks(String)                 void
+  -sortAttacks(Attack[], int, int)      void
+  -partition(Attack[], int, int)         int
+  -printAttacks()                       void
+  -shuffleArray(Attack[])               void
 }
 
 City <--l--* Attack
