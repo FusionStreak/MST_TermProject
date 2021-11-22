@@ -44,27 +44,27 @@ public class Main {
      * Prints the header of the application to the console
      */
     private static void printHeader() {
-        out.println("=========================");
+        out.println("===================================================");
         out.println("""
 
-                  ,-^-.
-                  |\\/\\|
-                  `-V-'
-                    H
-                    H        PlagueSim
-                    H           v0.5
-                 .-;':-.
-                ,' | `; \\
-                  """);
-        out.println("=========================");
-        out.println("      NET/OSS 3004");
-        out.println("  Term Project Fall 2021");
-        out.println("=========================");
-        out.println("        Team MST");
-        out.println("     Madeline Quang");
-        out.println("     Sayfullah Eid");
-        out.println("      Tolu Adebayo");
-        out.println("=========================");
+                                 ,-^-.
+                                 |\\/\\|
+                                 `-V-'
+                                   H
+                                   H           PlagueSim
+                                   H              v0.5
+                                .-;':-.
+                               ,' | `; \\
+                """);
+        out.println("===================================================");
+        out.println("                  NET/OSS 3004");
+        out.println("             Term Project Fall 2021");
+        out.println("===================================================");
+        out.println("                     Team MST");
+        out.println("                  Madeline Quang");
+        out.println("                  Sayfullah Eid");
+        out.println("                   Tolu Adebayo");
+        out.println("===================================================");
     }
 
     /**
@@ -73,9 +73,9 @@ public class Main {
      * @return the user's input(choice)
      */
     private static String mainMenu() {
-        out.println("------- MAIN MENU -------");
-        out.println("Choose from these choices");
-        out.println("-------------------------\n");
+        out.println("--------------------- MAIN MENU -------------------");
+        out.println("          Choose from the following options");
+        out.println("---------------------------------------------------\n");
         out.println("G - Graph menu");
         if (mainframe != null) {
             out.println("A - Parse in attack file.");
@@ -97,7 +97,7 @@ public class Main {
         boolean gRun = true;
         String input;
         while (gRun) {
-            out.println("------ GRAPH MENU -------");
+            out.println("----------------- GRAPH MENU ------------------");
             out.println("<filePath> - File path to graph file(this will clear an exisiting graph).");
             if (mainframe != null) {
                 out.println("P - Print current graph.");
@@ -131,7 +131,7 @@ public class Main {
         boolean aRun = true;
         String input;
         while (aRun) {
-            out.println("------ ATACK MENU -------");
+            out.println("----------------- ATTACK MENU -----------------");
             out.println("<filePath> - File path to attack file.");
             out.println("Q - Return to main menu.");
 
@@ -165,12 +165,12 @@ public class Main {
         boolean sRun = true;
         String input;
         while (sRun) {
-            out.println("------ SEARCH MENU ------");
-            out.println("I - Lists all nodes that have been attacked.");
-            out.println("F - Lists all nodes that have a firewall.");
-            out.println("IF - Lists all nodes that have a firewall and have been attacked.");
-            out.println("O - Lists all nodes that have an outbreak.");
-            out.println("D - Lists all nodes currently offline/down");
+            out.println("----------------- SEARCH MENU -----------------");
+            out.println("I - All cities that have been attacked.");
+            out.println("F - All cities that have a firewall.");
+            out.println("IF - All cities that have an attacked firewall.");
+            out.println("O - All cities that have an outbreak.");
+            out.println("D - All cities currently offline/down");
             out.println("Q - Return to main menu.");
 
             input = in.next().toUpperCase(Locale.ROOT);
