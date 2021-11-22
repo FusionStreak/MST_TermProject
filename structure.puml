@@ -98,10 +98,23 @@ class Graph {
 }
 
 class Main {
+  -mainframe                          Graph
+  -attacksA                        Attack[]
+  -in                               Scanner
   --[Methods]--
-  main(String[])          void
-  parseAttacks(String)    void
-  parseGraph(String)      void
+  main(String[])                       void
+  parseAttacks(String)                 void
+  ..CLI..
+  printHeader()                        void
+  mainMenu()                         String
+  gMenu()                              void
+  aMenu()                              void
+  sMenu()                              void
+  ..Supporting..
+  sortAttacks(Attack[], int, int)      void
+  partition(Attack[], int, int)         int
+  printAttacks()                       void
+  shuffleArray(Attack[])               void
 }
 
 City <--l--* Attack
