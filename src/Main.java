@@ -19,7 +19,7 @@ import static java.lang.System.out;
 public class Main {
     private static Graph mainframe = null;
     private static Attack[] attacksA;
-    private static Scanner in = new Scanner(System.in);
+    private static final Scanner in = new Scanner(System.in);
 
     /**
      * 
@@ -33,6 +33,7 @@ public class Main {
             case "G" -> gMenu();
             case "A" -> aMenu();
             case "S" -> sMenu();
+            case "P" -> pMenu();
             case "Q" -> run = false;
             default -> out.println("Invalid selection.");
             }
@@ -80,6 +81,7 @@ public class Main {
         if (mainframe != null) {
             out.println("A - Parse in attack file.");
             out.println("S - Enter search menu.");
+            out.println("P - Enter path finding menu.");
         }
         out.println("Q - Quit program");
 
@@ -182,6 +184,27 @@ public class Main {
             case "D" -> out.println(mainframe.inactive());
             case "Q" -> sRun = false;
             default -> out.println("Invalid selection.");
+            }
+        }
+    }
+
+    /**
+     * TODO: #1 Implement Path Menu
+     */
+    private static void pMenu() {
+        boolean pRun = true;
+        String input;
+        while (pRun) {
+            out.println("Q - Return to main menu.");
+
+            input = in.next();
+            switch (input) {
+            case "Q" -> pRun = false;
+            default -> {
+                String c1 = input.split("[, ]")[0];
+                String c2 = input.split("[, ]")[1];
+                mainframe.hasPath(c1, c2);
+            }
             }
         }
     }

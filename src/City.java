@@ -14,7 +14,7 @@ public class City {
     private String name;
     private boolean firewall;
     private ArrayList<Attack> attacks = new ArrayList<>();
-    private Set<Attack.Type> attackTypes = new HashSet<>();
+    private final Set<Attack.Type> attackTypes = new HashSet<>();
     private Point position = new Point(0, 0);
     private Status currStatus = Status.SAFE;
 
@@ -25,9 +25,7 @@ public class City {
     }
 
     private boolean putDown() {
-        if (this.attackTypes.size() >= 2 && this.attacks.size() >= 6)
-            return true;
-        return false;
+        return this.attackTypes.size() >= 2 && this.attacks.size() >= 6;
     }
 
     public String getName() {

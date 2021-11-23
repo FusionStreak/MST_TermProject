@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Graph {
     /** HashMap<> of City objects and list of neighbouring cities */
-    private HashMap<City, City[]> citiesMap = new HashMap<>();
+    private final HashMap<City, City[]> citiesMap = new HashMap<>();
 
     Graph() {
 
@@ -112,7 +112,7 @@ public class Graph {
      * @param a Attack object to be parsed
      */
     public void attack(Attack a) {
-
+        // TODO: #2 Implement logic for adding attacks to graphs
     }
 
     /**
@@ -156,6 +156,7 @@ public class Graph {
      * @return
      */
     public String hasPath(String c1, String c2) {
+        // TODO: #3 Implement finding path between 2 cities
         City[] cit = this.findCities(c1, c2);
         if (cit[0].getCurrStatus() != City.Status.SAFE)
             return c1 + " is infected/offline";
@@ -169,6 +170,7 @@ public class Graph {
         return "No path available between '" + c1 + "' and '" + c2 + "'";
     }
 
+    // TODO: #4 Implement searches
     /**
      * Queries the Graph for all City objects that have been infected
      * 

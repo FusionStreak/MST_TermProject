@@ -122,8 +122,7 @@ public class Attack {
             return true;
         if (obj instanceof Attack) {
             Attack a = (Attack) obj;
-            if (a.type == this.type && a.dateTime.equals(this.dateTime) && a.city.equals(this.city))
-                return true;
+            return a.type == this.type && a.dateTime.equals(this.dateTime) && a.city.equals(this.city);
         }
         return false;
     }
