@@ -99,7 +99,7 @@ public class Main {
         boolean gRun = true;
         String input;
         while (gRun) {
-            out.println("----------------- GRAPH MENU ------------------");
+            out.println("------------------- GRAPH MENU -------------------");
             out.println("<filePath> - File path to graph file(this will clear an exisiting graph).");
             if (mainframe != null) {
                 out.println("P - Print current graph.");
@@ -133,7 +133,7 @@ public class Main {
         boolean aRun = true;
         String input;
         while (aRun) {
-            out.println("----------------- ATTACK MENU -----------------");
+            out.println("------------------ ATTACK MENU -------------------");
             out.println("<filePath> - File path to attack file.");
             out.println("Q - Return to main menu.");
 
@@ -167,7 +167,7 @@ public class Main {
         boolean sRun = true;
         String input;
         while (sRun) {
-            out.println("----------------- SEARCH MENU -----------------");
+            out.println("------------------- SEARCH MENU ------------------");
             out.println("I - All cities that have been attacked.");
             out.println("F - All cities that have a firewall.");
             out.println("IF - All cities that have an attacked firewall.");
@@ -189,20 +189,25 @@ public class Main {
     }
 
     /**
-     * TODO: #1 Implement Path Menu
+     * The path menu:
+     * <ul>
+     * <li>Find path between 2 given cities</li>
+     * </ul>
      */
     private static void pMenu() {
         boolean pRun = true;
         String input;
         while (pRun) {
+            out.println("-------------------- PATH MENU -------------------");
+            out.println("<city1> <city2> - Two cities to find path between.");
             out.println("Q - Return to main menu.");
 
             input = in.next();
             switch (input) {
             case "Q" -> pRun = false;
             default -> {
-                String c1 = input.split("[, ]")[0];
-                String c2 = input.split("[, ]")[1];
+                String c1 = input.split("[ ]")[0];
+                String c2 = input.split("[ ]")[1];
                 mainframe.hasPath(c1, c2);
             }
             }
