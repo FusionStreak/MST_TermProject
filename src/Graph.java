@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -111,8 +112,51 @@ public class Graph {
      * 
      * @param a Attack object to be parsed
      */
-    public void attack(Attack a) {
+    public void attack(Attack a)  {
         // TODO: #2 Implement logic for adding attacks to graphs
+        /*
+        * Pseudo Code:
+        * Parse the attack object "a" --> in Attack
+        * Get the city
+        * add attack to the city
+        * if city has routes
+        * add attack to the routes as well
+        * redo the process for the routes as well
+        * recursive method??
+        * */
+
+        // Get the city
+        String targetCity = a.getCity();
+
+
+        // If the targetCity has routes
+        //if()
+        // Add the attack to the city?
+        // if the gotten city is equal to its keyset, set that city as target
+        for (City city : this.citiesMap.keySet()) {
+            if (city.getName().compareToIgnoreCase(targetCity) == 0) {
+                // found city representing attack source
+                city.addAttack(a);
+                City [] cities = this.citiesMap.get(city);
+                for(City connectedCity : cities){
+                    try{
+                        Attack connectedAttack = new Attack(a.getType(), a.getDateTime().toString(), connectedCity.getName());
+                        this.attack(connectedAttack);
+                    }
+                    catch (ParseException e) {
+                        System.out.println("Parse Error");
+                        System.exit(1);
+                    }
+                }
+            }
+
+        }
+
+
+
+
+
+
     }
 
     /**
