@@ -182,7 +182,7 @@ public class Graph {
         for (City city : this.citiesMap.keySet()){
             if (city.getCurrStatus() == City.Status.UNSAFE || city.getCurrStatus() == City.Status.OUTBREAK){
                 count++;
-                str += String.valueOf(count)+ city.getName();
+                str += String.valueOf(count)+ ' '+ city.getName()+'\n';
             }
         }
         return "";
@@ -200,7 +200,7 @@ public class Graph {
         for (City city : this.citiesMap.keySet()){
             if (city.getFirewall() == true){
                 count++;
-                str += String.valueOf(count) + city.getName();
+                str += String.valueOf(count) + ' ' + city.getName() +'\n';
             }
         }
         return str;
@@ -218,7 +218,7 @@ public class Graph {
         for (City city : this.citiesMap.keySet()){
             if (city.getFirewall() == true && city.getAttacks() != null){
                 count++;
-                str += String.valueOf(count)+city.getName();
+                str += String.valueOf(count) + ' ' +city.getName() + '\n';
             }
         }
         return str;
@@ -235,7 +235,7 @@ public class Graph {
         for (City city : this.citiesMap.keySet()){
             if (city.getCurrStatus() == City.Status.OUTBREAK){
                 count++;
-                str += String.valueOf(count) + city.getName();
+                str += String.valueOf(count) + ' ' + city.getName() +'\n';
             }
         }
         return str;
@@ -252,7 +252,7 @@ public class Graph {
         for (City city : this.citiesMap.keySet()){
             if (city.getCurrStatus() == City.Status.OFFLINE){
                 count++;
-                str += String.valueOf(count) + city.getName();
+                str += String.valueOf(count) + ' ' + city.getName() + '\n';
             }
         }
         return str;
