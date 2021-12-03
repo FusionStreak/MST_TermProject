@@ -180,7 +180,7 @@ public class Graph {
         String str = "";
         int count = 0;
         for (City city : this.citiesMap.keySet()){
-            if (city.getAttacks() != null &&  city.getFirewall() == false){
+            if (city.getCurrStatus() == City.Status.UNSAFE || city.getCurrStatus() == City.Status.OUTBREAK){
                 count++;
                 str += String.valueOf(count)+ city.getName();
             }
