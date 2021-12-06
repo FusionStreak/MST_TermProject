@@ -144,7 +144,7 @@ public class Main {
             default -> {
                 parseAttacks(input);
                 out.println("Read in " + attacksA.length + " attacks.");
-                sortAttacks(attacksA, 0, attacksA.length - 1);
+                //sortAttacks(attacksA, 0, attacksA.length - 1);
                 for (Attack attack : attacksA) {
                     mainframe.attack(attack);
                 }

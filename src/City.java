@@ -91,6 +91,9 @@ public class City {
                 return true;
             }
         }
+        if (this.currStatus != Status.OUTBREAK) {
+            this.currStatus = Status.UNSAFE;
+        }
         if (within2 >= 2)
             this.alert(a.getType());
         if (this.putDown())

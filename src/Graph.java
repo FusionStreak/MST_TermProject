@@ -230,7 +230,7 @@ public class Graph {
                 str += String.valueOf(count)+ ' '+ city.getName()+'\n';
             }
         }
-        return "";
+        return str;
     }
 
     /**
