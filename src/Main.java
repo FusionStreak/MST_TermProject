@@ -139,7 +139,6 @@ public class Main {
 
             input = in.next();
             switch (input) {
-<<<<<<< HEAD
                 case "q" -> aRun = false;
                 case "Q" -> aRun = false;
                 default -> {
@@ -149,16 +148,6 @@ public class Main {
                     for (Attack attack : attacksA) {
                         mainframe.attack(attack);
                     }
-=======
-            case "q" -> aRun = false;
-            case "Q" -> aRun = false;
-            default -> {
-                parseAttacks(input);
-                out.println("Read in " + attacksA.length + " attacks.");
-                //sortAttacks(attacksA, 0, attacksA.length - 1);
-                for (Attack attack : attacksA) {
-                    mainframe.attack(attack);
->>>>>>> 579261d06aac0500fda6a845e0a8b490f6844334
                 }
             }
         }

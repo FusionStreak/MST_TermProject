@@ -112,51 +112,40 @@ public class Graph {
      * 
      * @param a Attack object to be parsed
      */
-    public void attack(Attack a)  {
-        // TODO: #2 Implement logic for adding attacks to graphs
+    public void attack(Attack a) {
         /*
-        * Pseudo Code:
-        * Parse the attack object "a" --> in Attack
-        * Get the city
-        * add attack to the city
-        * if city has routes
-        * add attack to the routes as well
-        * redo the process for the routes as well
-        * recursive method??
-        * */
+         * Pseudo Code:
+         * Parse the attack object "a" --> in Attack
+         * Get the city
+         * add attack to the city
+         * if city has routes
+         * add attack to the routes as well
+         * redo the process for the routes as well
+         * recursive method??
+         */
 
         // Get the city
         String targetCity = a.getCity();
 
         // If the targetCity has routes
-        //if()
+        // if()
         // Add the attack to the city?
         // if the gotten city is equal to its keyset, set that city as target
         for (City city : this.citiesMap.keySet()) {
             if (city.getName().compareToIgnoreCase(targetCity) == 0) {
                 // found city representing attack source
-              if (city.addAttack(a)){
-                  City [] cities = this.citiesMap.get(city);
-                  for(City connectedCity : cities){
-                      try{
-                          Attack connectedAttack = new Attack(a.getType(), a.getDateTime().toString(), connectedCity.getName());
-                          this.attack(connectedAttack);
-                      }
-                      catch (ParseException e) {
-                          System.out.println("Parse Error");
-                          System.exit(1);
-                      }
-                  }
-              }
+                if (city.addAttack(a)) {
+                    City[] cities = this.citiesMap.get(city);
+                    for (City connectedCity : cities) {
+                        Attack connectedAttack = new Attack(a.getType(), a.getDateTime(),
+                                connectedCity.getName());
+                        this.attack(connectedAttack);
+                    }
+                }
 
             }
 
         }
-
-
-
-
-
 
     }
 
@@ -213,7 +202,6 @@ public class Graph {
             }
         }
 
-        
         return "No path available between '" + c1 + "' and '" + c2 + "'";
     }
 
@@ -226,10 +214,10 @@ public class Graph {
     public String isInfected() {
         String str = "";
         int count = 0;
-        for (City city : this.citiesMap.keySet()){
-            if (city.getCurrStatus() == City.Status.UNSAFE || city.getCurrStatus() == City.Status.OUTBREAK){
+        for (City city : this.citiesMap.keySet()) {
+            if (city.getCurrStatus() == City.Status.UNSAFE || city.getCurrStatus() == City.Status.OUTBREAK) {
                 count++;
-                str += String.valueOf(count)+ ' '+ city.getName()+'\n';
+                str += String.valueOf(count) + ' ' + city.getName() + '\n';
             }
         }
         return str;
@@ -244,10 +232,10 @@ public class Graph {
     public String hasFirewall() {
         String str = "";
         int count = 0;
-        for (City city : this.citiesMap.keySet()){
-            if (city.getFirewall() == true){
+        for (City city : this.citiesMap.keySet()) {
+            if (city.getFirewall() == true) {
                 count++;
-                str += String.valueOf(count) + ' ' + city.getName() +'\n';
+                str += String.valueOf(count) + ' ' + city.getName() + '\n';
             }
         }
         return str;
@@ -262,10 +250,10 @@ public class Graph {
     public String hasAttackedFirewall() {
         String str = "";
         int count = 0;
-        for (City city : this.citiesMap.keySet()){
-            if (city.getFirewall() == true && city.getAttacks().isEmpty() == false){
+        for (City city : this.citiesMap.keySet()) {
+            if (city.getFirewall() == true && city.getAttacks().isEmpty() == false) {
                 count++;
-                str += String.valueOf(count) + ' ' +city.getName() + '\n';
+                str += String.valueOf(count) + ' ' + city.getName() + '\n';
             }
         }
         return str;
@@ -279,10 +267,10 @@ public class Graph {
     public String outbreaks() {
         String str = "";
         int count = 0;
-        for (City city : this.citiesMap.keySet()){
-            if (city.getCurrStatus() == City.Status.OUTBREAK){
+        for (City city : this.citiesMap.keySet()) {
+            if (city.getCurrStatus() == City.Status.OUTBREAK) {
                 count++;
-                str += String.valueOf(count) + ' ' + city.getName() +'\n';
+                str += String.valueOf(count) + ' ' + city.getName() + '\n';
             }
         }
         return str;
@@ -296,8 +284,8 @@ public class Graph {
     public String inactive() {
         String str = "";
         int count = 0;
-        for (City city : this.citiesMap.keySet()){
-            if (city.getCurrStatus() == City.Status.OFFLINE){
+        for (City city : this.citiesMap.keySet()) {
+            if (city.getCurrStatus() == City.Status.OFFLINE) {
                 count++;
                 str += String.valueOf(count) + ' ' + city.getName() + '\n';
             }
