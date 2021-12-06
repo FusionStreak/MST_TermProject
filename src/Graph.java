@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -205,7 +204,6 @@ public class Graph {
         return "No path available between '" + c1 + "' and '" + c2 + "'";
     }
 
-    // TODO: #4 Implement searches
     /**
      * Queries the Graph for all City objects that have been infected
      * 
