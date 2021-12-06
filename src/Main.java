@@ -30,12 +30,12 @@ public class Main {
         boolean run = true;
         while (run) {
             switch (mainMenu()) {
-            case "G" -> gMenu();
-            case "A" -> aMenu();
-            case "S" -> sMenu();
-            case "P" -> pMenu();
-            case "Q" -> run = false;
-            default -> out.println("Invalid selection.");
+                case "G" -> gMenu();
+                case "A" -> aMenu();
+                case "S" -> sMenu();
+                case "P" -> pMenu();
+                case "Q" -> run = false;
+                default -> out.println("Invalid selection.");
             }
         }
         out.println("Goodbye!");
@@ -108,17 +108,17 @@ public class Main {
 
             input = in.next();
             switch (input) {
-            case "Q" -> gRun = false;
-            case "q" -> gRun = false;
-            case "P" -> {
-                if (mainframe != null)
-                    out.println(mainframe);
-            }
-            case "p" -> {
-                if (mainframe != null)
-                    out.println(mainframe);
-            }
-            default -> mainframe = new Graph(input);
+                case "Q" -> gRun = false;
+                case "q" -> gRun = false;
+                case "P" -> {
+                    if (mainframe != null)
+                        out.println(mainframe);
+                }
+                case "p" -> {
+                    if (mainframe != null)
+                        out.println(mainframe);
+                }
+                default -> mainframe = new Graph(input);
             }
         }
     }
@@ -139,16 +139,16 @@ public class Main {
 
             input = in.next();
             switch (input) {
-            case "q" -> aRun = false;
-            case "Q" -> aRun = false;
-            default -> {
-                parseAttacks(input);
-                out.println("Read in " + attacksA.length + " attacks.");
-                sortAttacks(attacksA, 0, attacksA.length - 1);
-                for (Attack attack : attacksA) {
-                    mainframe.attack(attack);
+                case "q" -> aRun = false;
+                case "Q" -> aRun = false;
+                default -> {
+                    parseAttacks(input);
+                    out.println("Read in " + attacksA.length + " attacks.");
+                    sortAttacks(attacksA, 0, attacksA.length - 1);
+                    for (Attack attack : attacksA) {
+                        mainframe.attack(attack);
+                    }
                 }
-            }
             }
         }
     }
@@ -177,13 +177,13 @@ public class Main {
 
             input = in.next().toUpperCase(Locale.ROOT);
             switch (input) {
-            case "I" -> out.println(mainframe.isInfected());
-            case "F" -> out.println(mainframe.hasFirewall());
-            case "IF" -> out.println(mainframe.hasAttackedFirewall());
-            case "O" -> out.println(mainframe.outbreaks());
-            case "D" -> out.println(mainframe.inactive());
-            case "Q" -> sRun = false;
-            default -> out.println("Invalid selection.");
+                case "I" -> out.println(mainframe.isInfected());
+                case "F" -> out.println(mainframe.hasFirewall());
+                case "IF" -> out.println(mainframe.hasAttackedFirewall());
+                case "O" -> out.println(mainframe.outbreaks());
+                case "D" -> out.println(mainframe.inactive());
+                case "Q" -> sRun = false;
+                default -> out.println("Invalid selection.");
             }
         }
     }
@@ -204,12 +204,12 @@ public class Main {
 
             input = in.next();
             switch (input) {
-            case "Q" -> pRun = false;
-            default -> {
-                String c1 = input.split("[ ]")[0];
-                String c2 = input.split("[ ]")[1];
-                mainframe.hasPath(c1, c2);
-            }
+                case "Q" -> pRun = false;
+                default -> {
+                    String c1 = input.split("[ ]")[0];
+                    String c2 = input.split("[ ]")[1];
+                    mainframe.findPath(c1, c2);
+                }
             }
         }
     }

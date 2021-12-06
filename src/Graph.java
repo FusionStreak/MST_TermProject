@@ -155,7 +155,7 @@ public class Graph {
      * @param c2
      * @return
      */
-    public String hasPath(String c1, String c2) {
+    public String findPath(String c1, String c2) {
         // TODO: #3 Implement finding path between 2 cities
         City[] cit = this.findCities(c1, c2);
         if (cit[0].getCurrStatus() != City.Status.SAFE)
@@ -167,6 +167,8 @@ public class Graph {
                 return c1 + " is directly connected to " + c2;
             }
         }
+
+        
         return "No path available between '" + c1 + "' and '" + c2 + "'";
     }
 
