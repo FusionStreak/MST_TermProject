@@ -128,7 +128,6 @@ public class Graph {
         // Get the city
         String targetCity = a.getCity();
 
-
         // If the targetCity has routes
         //if()
         // Add the attack to the city?
@@ -136,18 +135,20 @@ public class Graph {
         for (City city : this.citiesMap.keySet()) {
             if (city.getName().compareToIgnoreCase(targetCity) == 0) {
                 // found city representing attack source
-                city.addAttack(a);
-                City [] cities = this.citiesMap.get(city);
-                for(City connectedCity : cities){
-                    try{
-                        Attack connectedAttack = new Attack(a.getType(), a.getDateTime().toString(), connectedCity.getName());
-                        this.attack(connectedAttack);
-                    }
-                    catch (ParseException e) {
-                        System.out.println("Parse Error");
-                        System.exit(1);
-                    }
-                }
+              if (city.addAttack(a)){
+                  City [] cities = this.citiesMap.get(city);
+                  for(City connectedCity : cities){
+                      try{
+                          Attack connectedAttack = new Attack(a.getType(), a.getDateTime().toString(), connectedCity.getName());
+                          this.attack(connectedAttack);
+                      }
+                      catch (ParseException e) {
+                          System.out.println("Parse Error");
+                          System.exit(1);
+                      }
+                  }
+              }
+
             }
 
         }
