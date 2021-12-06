@@ -215,7 +215,7 @@ public class Graph {
         String str = "";
         int count = 0;
         for (City city : this.citiesMap.keySet()) {
-            if (city.getCurrStatus() == City.Status.UNSAFE || city.getCurrStatus() == City.Status.OUTBREAK) {
+            if (city.getCurrStatus() != City.Status.SAFE) {
                 count++;
                 str += String.valueOf(count) + ' ' + city.getName() + '\n';
             }
