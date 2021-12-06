@@ -222,7 +222,15 @@ public class Graph {
      * @return String of all cities that have been infected
      */
     public String isInfected() {
-        return "";
+        String str = "";
+        int count = 0;
+        for (City city : this.citiesMap.keySet()){
+            if (city.getCurrStatus() == City.Status.UNSAFE || city.getCurrStatus() == City.Status.OUTBREAK){
+                count++;
+                str += String.valueOf(count)+ ' '+ city.getName()+'\n';
+            }
+        }
+        return str;
     }
 
     /**
@@ -232,7 +240,15 @@ public class Graph {
      * @return String of all cities that have a firewall
      */
     public String hasFirewall() {
-        return "";
+        String str = "";
+        int count = 0;
+        for (City city : this.citiesMap.keySet()){
+            if (city.getFirewall() == true){
+                count++;
+                str += String.valueOf(count) + ' ' + city.getName() +'\n';
+            }
+        }
+        return str;
     }
 
     /**
@@ -242,7 +258,15 @@ public class Graph {
      * @return String of a cities that have a firewall and have been attacked
      */
     public String hasAttackedFirewall() {
-        return "";
+        String str = "";
+        int count = 0;
+        for (City city : this.citiesMap.keySet()){
+            if (city.getFirewall() == true && city.getAttacks().isEmpty() == false){
+                count++;
+                str += String.valueOf(count) + ' ' +city.getName() + '\n';
+            }
+        }
+        return str;
     }
 
     /**
@@ -251,7 +275,15 @@ public class Graph {
      * @return String of all the cities that have had an outbreak
      */
     public String outbreaks() {
-        return "";
+        String str = "";
+        int count = 0;
+        for (City city : this.citiesMap.keySet()){
+            if (city.getCurrStatus() == City.Status.OUTBREAK){
+                count++;
+                str += String.valueOf(count) + ' ' + city.getName() +'\n';
+            }
+        }
+        return str;
     }
 
     /**
@@ -260,7 +292,15 @@ public class Graph {
      * @return String of all the cities that have been set to Inactive
      */
     public String inactive() {
-        return "";
+        String str = "";
+        int count = 0;
+        for (City city : this.citiesMap.keySet()){
+            if (city.getCurrStatus() == City.Status.OFFLINE){
+                count++;
+                str += String.valueOf(count) + ' ' + city.getName() + '\n';
+            }
+        }
+        return str;
     }
 
     public String toString() {

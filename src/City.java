@@ -86,8 +86,13 @@ public class City {
                     within4++;
                 }
             }
-            if (within4 >= 4)
+            if (within4 >= 4) {
+                this.currStatus = Status.OUTBREAK;
                 return true;
+            }
+        }
+        if (this.currStatus != Status.OUTBREAK) {
+            this.currStatus = Status.UNSAFE;
         }
         if (within2 >= 2)
             this.alert(a.getType());
@@ -123,7 +128,7 @@ public class City {
     }
 
     public enum Status {
-        OFFLINE, SAFE, UNSAFE,
+        OFFLINE, SAFE, UNSAFE, OUTBREAK;
     }
 
     public static class Point {
