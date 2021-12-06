@@ -261,7 +261,7 @@ public class Graph {
         String str = "";
         int count = 0;
         for (City city : this.citiesMap.keySet()){
-            if (city.getFirewall() == true && city.getAttacks() != null){
+            if (city.getFirewall() == true && city.getAttacks().isEmpty() == false){
                 count++;
                 str += String.valueOf(count) + ' ' +city.getName() + '\n';
             }
