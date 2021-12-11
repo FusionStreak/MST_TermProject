@@ -30,7 +30,7 @@ class Attack {
   -city                             String
   --[Constructors]--
   +Attack(String, String, String, String)
-  +Attack(Type, String, String, String)
+  +Attack(Type, Date, String, String)
   --[Methods]--
   -toDate(String)                     Date
   +toEpoch()                          long

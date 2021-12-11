@@ -1,3 +1,4 @@
 out/
 src/tests/attack.txt
 build/
+build-jar/

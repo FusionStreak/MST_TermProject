@@ -12,13 +12,16 @@ import static java.lang.System.out;
  * Main class
  *
  * @author Team MST
- * @version 0.5
- * @since 27/10/2021
+ * @version 0.9
+ * @since 10/12/2021
  */
 
 public class Main {
+    /** Main {@code Graph} object used for the application */
     private static Graph mainframe = null;
+    /** Array of latest {@code Attack} objects parsed in */
     private static Attack[] attacksA;
+    /** {@code Scanner} object used by all user input prompts in the application */
     private static final Scanner in = new Scanner(System.in);
 
     /**
@@ -30,12 +33,12 @@ public class Main {
         boolean run = true;
         while (run) {
             switch (mainMenu()) {
-            case "G" -> gMenu();
-            case "A" -> aMenu();
-            case "S" -> sMenu();
-            case "P" -> pMenu();
-            case "Q" -> run = false;
-            default -> out.println("Invalid selection.");
+                case "G" -> gMenu();
+                case "A" -> aMenu();
+                case "S" -> sMenu();
+                case "P" -> pMenu();
+                case "Q" -> run = false;
+                default -> out.println("Invalid selection.");
             }
         }
         out.println("Goodbye!");
@@ -108,17 +111,17 @@ public class Main {
 
             input = in.next();
             switch (input) {
-            case "Q" -> gRun = false;
-            case "q" -> gRun = false;
-            case "P" -> {
-                if (mainframe != null)
-                    out.println(mainframe);
-            }
-            case "p" -> {
-                if (mainframe != null)
-                    out.println(mainframe);
-            }
-            default -> mainframe = new Graph(input);
+                case "Q" -> gRun = false;
+                case "q" -> gRun = false;
+                case "P" -> {
+                    if (mainframe != null)
+                        out.println(mainframe);
+                }
+                case "p" -> {
+                    if (mainframe != null)
+                        out.println(mainframe);
+                }
+                default -> mainframe = new Graph(input);
             }
         }
     }
@@ -139,16 +142,16 @@ public class Main {
 
             input = in.next();
             switch (input) {
-            case "q" -> aRun = false;
-            case "Q" -> aRun = false;
-            default -> {
-                parseAttacks(input);
-                out.println("Read in " + attacksA.length + " attacks.");
-                //sortAttacks(attacksA, 0, attacksA.length - 1);
-                for (Attack attack : attacksA) {
-                    mainframe.attack(attack);
+                case "q" -> aRun = false;
+                case "Q" -> aRun = false;
+                default -> {
+                    parseAttacks(input);
+                    out.println("Read in " + attacksA.length + " attacks.");
+                    sortAttacks(attacksA, 0, attacksA.length - 1);
+                    for (Attack attack : attacksA) {
+                        mainframe.attack(attack);
+                    }
                 }
-            }
             }
         }
     }
@@ -177,13 +180,13 @@ public class Main {
 
             input = in.next().toUpperCase(Locale.ROOT);
             switch (input) {
-            case "I" -> out.println(mainframe.isInfected());
-            case "F" -> out.println(mainframe.hasFirewall());
-            case "IF" -> out.println(mainframe.hasAttackedFirewall());
-            case "O" -> out.println(mainframe.outbreaks());
-            case "D" -> out.println(mainframe.inactive());
-            case "Q" -> sRun = false;
-            default -> out.println("Invalid selection.");
+                case "I" -> out.println(mainframe.isInfected());
+                case "F" -> out.println(mainframe.hasFirewall());
+                case "IF" -> out.println(mainframe.hasAttackedFirewall());
+                case "O" -> out.println(mainframe.outbreaks());
+                case "D" -> out.println(mainframe.inactive());
+                case "Q" -> sRun = false;
+                default -> out.println("Invalid selection.");
             }
         }
     }
@@ -199,17 +202,18 @@ public class Main {
         String input;
         while (pRun) {
             out.println("-------------------- PATH MENU -------------------");
+            out.println("NOTICE: Currently only works for neighbour cities!");
             out.println("<city1> <city2> - Two cities to find path between.");
             out.println("Q - Return to main menu.");
 
             input = in.next();
             switch (input) {
-            case "Q" -> pRun = false;
-            default -> {
-                String c1 = input.split("[ ]")[0];
-                String c2 = input.split("[ ]")[1];
-                mainframe.hasPath(c1, c2);
-            }
+                case "Q" -> pRun = false;
+                default -> {
+                    String c1 = input.split("[ ]")[0];
+                    String c2 = input.split("[ ]")[1];
+                    mainframe.findPath(c1, c2);
+                }
             }
         }
     }

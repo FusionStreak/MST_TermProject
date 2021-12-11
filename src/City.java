@@ -3,19 +3,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * City class
+ * City class that holds a {@code Attack[]} of all attacks attempted on the
+ * city. Also contains a defintion of a {@code Point} class to hold position of
+ * the city.
  *
  * @author Team MST
- * @version 0.1
- * @since 27/10/2021
+ * @version 0.9
+ * @since 10/12/2021
  */
 
 public class City {
+    /** Name of the city */
     private String name;
+    /** If city has a firewall */
     private boolean firewall;
+    /** List of all attacks attempted on the city */
     private ArrayList<Attack> attacks = new ArrayList<>();
+    /** Set of attacks types attempted on the city */
     private final Set<Attack.Type> attackTypes = new HashSet<>();
+    /** Position of city on the "map" */
     private Point position = new Point(0, 0);
+    /** Current status of the city */
     private Status currStatus = Status.SAFE;
 
     public City(String name, boolean firewall, Point point) {
@@ -24,6 +32,12 @@ public class City {
         this.position = point;
     }
 
+    /**
+     * Checks if city should be put {@code OFFLINE}
+     * 
+     * @return {@code boolean} If number of attacks types is 2 or more and there
+     *         have been 6 or more attacks total, return true
+     */
     private boolean putDown() {
         return this.attackTypes.size() >= 2 && this.attacks.size() >= 6;
     }
@@ -123,12 +137,12 @@ public class City {
 
     @Override
     public String toString() {
-        return name + ":\nfirewall= " + firewall + "\nattacks= " + attacks.size() + "\nposition= " + position
-                + "\ncurrStatus= " + currStatus;
+        return name + "{firewall->" + firewall + ", attacks->" + attacks.size() + ", position->" + position
+                + ", currStatus->" + currStatus + "}";
     }
 
     public enum Status {
-        OFFLINE, SAFE, UNSAFE, OUTBREAK;
+        OFFLINE, SAFE, UNSAFE, OUTBREAK
     }
 
     public static class Point {

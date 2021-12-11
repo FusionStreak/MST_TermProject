@@ -5,8 +5,8 @@ import java.text.ParseException;
  * Attack class
  *
  * @author Team MST
- * @version 0.1
- * @since 27/10/2021
+ * @version 0.9
+ * @since 10/12/2021
  */
 
 public class Attack {
@@ -18,17 +18,16 @@ public class Attack {
     private String city;
 
     /**
-     * Basic constructor of Attack object. The{@code dateTime String} will be parsed
-     * into a {@code Date} object.
+     * Basic constructor of Attack object. Mainly used for outbreaks
      * 
      * @param type     Type of attack
-     * @param dateTime String of date and time of attack (yyyy-MM-dd HH:mm:ss)
+     * @param dateTime {@code Date} object of date and time of attack
      * @param city     String name of the target city
      * @throws ParseException Throws exception if parsing dateTime String fails
      */
-    public Attack(Type type, String dateTime, String city) throws ParseException {
+    public Attack(Type type, Date dateTime, String city) {
         this.type = type;
-        this.dateTime = toDate(dateTime);
+        this.dateTime = dateTime;
         this.city = city;
     }
 
