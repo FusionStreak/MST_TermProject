@@ -19,6 +19,8 @@ FALL 2021
 - Sayfullah Eid
 - Tolu Adebayo
 
+## GitHub Repository
+- [MST_TermProject](https://github.com/FusionStreak/MST_TermProject)
 ## General Structure
 
 ![General Structure](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/fusionstreak/MST_TermProject/master/structure.puml)
@@ -31,7 +33,7 @@ FALL 2021
 
 - Run(either method):
   - `Main.main()` in an IDE(e.g. Ecliplse, IntelliJ, VS Code)
-  - `$ java -jar TeamMST-vX.X.jar` in a terminal
+  - `$ java -jar TeamMST-v0.9.jar` in a terminal
 - A Command Line Interface(CLI) should display in your terminal with a menu
 - Follow the prompts to use the program
 - You must first parse in a `Graph` in the `Graph menu` to use the rest of the functionality
@@ -50,7 +52,7 @@ FALL 2021
     - Get all cities that have an outbreak(and are not offline)
     - Get all cities that are currently offline
   - Path finding
-    - Currently not working
+    - Currently not working fully
 
 ## TODO
 
