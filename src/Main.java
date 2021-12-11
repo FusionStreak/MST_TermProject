@@ -12,13 +12,16 @@ import static java.lang.System.out;
  * Main class
  *
  * @author Team MST
- * @version 0.5
- * @since 27/10/2021
+ * @version 0.9
+ * @since 10/12/2021
  */
 
 public class Main {
+    /** Main {@code Graph} object used for the application */
     private static Graph mainframe = null;
+    /** Array of latest {@code Attack} objects parsed in */
     private static Attack[] attacksA;
+    /** {@code Scanner} object used by all user input prompts in the application */
     private static final Scanner in = new Scanner(System.in);
 
     /**
@@ -199,6 +202,7 @@ public class Main {
         String input;
         while (pRun) {
             out.println("-------------------- PATH MENU -------------------");
+            out.println("NOTICE: Currently only works for neighbour cities!");
             out.println("<city1> <city2> - Two cities to find path between.");
             out.println("Q - Return to main menu.");
 

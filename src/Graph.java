@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 /**
- * Graph class
- *
+ * Graph structure that holds a {@code HashMap} of {@code City} objects and a
+ * {@code City[]} of its neighbours
+ * 
  * @author Team MST
- * @version 0.1
- * @since 27/10/2021
+ * @version 0.9
+ * @since 10/12/2021
  */
 
 public class Graph {
@@ -295,9 +296,7 @@ public class Graph {
         String str = "";
         for (City city : this.citiesMap.keySet()) {
             str += city.toString() + "\n";
-        }
-        for (City city : this.citiesMap.keySet()) {
-            str += city.getName() + ": " + this.printCityNames(this.citiesMap.get(city)) + "\n";
+            str += "Neighbours" + ": " + this.printCityNames(this.citiesMap.get(city)) + "\n\n";
         }
         return str;
     }

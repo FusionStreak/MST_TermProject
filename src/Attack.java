@@ -5,8 +5,8 @@ import java.text.ParseException;
  * Attack class
  *
  * @author Team MST
- * @version 0.1
- * @since 27/10/2021
+ * @version 0.9
+ * @since 10/12/2021
  */
 
 public class Attack {
